@@ -1,15 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
-// import { withRouter } from "react-router-dom";
+
 import { ProductsContext } from "../../context/products-context";
-// import { CartContext } from "../../context/cart-context";
-// import { isInCart } from "../../helpers";
+import { CartContext } from "../../context/cart-context";
+import { isInCart } from "../../helpers";
 import Layout from "../shared/layout";
 import "./single-product.styles.scss";
 import { useNavigate, useParams } from "react-router-dom";
 
 const SingleProduct = ({ match }) => {
   const { products } = useContext(ProductsContext);
-  //   const { addProduct, cartItems, increase } = useContext(CartContext);
+  const { addProduct, cartItems, increase } = useContext(CartContext);
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
@@ -28,7 +28,7 @@ const SingleProduct = ({ match }) => {
     return null;
   }
   const { imageUrl, title, price, description } = product;
-  //   const itemInCart = isInCart(product, cartItems);
+  const itemInCart = isInCart(product, cartItems);
   return (
     <Layout>
       <div className="single-product-container">
@@ -41,16 +41,16 @@ const SingleProduct = ({ match }) => {
             <p>{price}</p>
           </div>
           <div className="add-to-cart-btns">
-            {/* {!itemInCart && ( */}
-            <button
-              className="button is-white nomad-btn"
-              id="btn-white-outline"
-              //   onClick={() => addProduct(product)}
-            >
-              ADD TO CART
-            </button>
-            {/* )} */}
-            {/* {itemInCart && (
+            {!itemInCart && (
+              <button
+                className="button is-white nomad-btn"
+                id="btn-white-outline"
+                onClick={() => addProduct(product)}
+              >
+                ADD TO CART
+              </button>
+            )}
+            {itemInCart && (
               <button
                 className="button is-white nomad-btn"
                 id="btn-white-outline"
@@ -58,7 +58,7 @@ const SingleProduct = ({ match }) => {
               >
                 ADD MORE
               </button>
-            )} */}
+            )}
 
             <button
               className="button is-black nomad-btn"

@@ -9,8 +9,8 @@ const FeaturedProduct = (props) => {
   const { title, imageUrl, price, id, description } = props;
   const navigate = useNavigate();
   const product = { title, imageUrl, price, id, description };
-  //   const { addProduct, cartItems, increase } = useContext(CartContext);
-  //   const itemInCart = isInCart(product, cartItems);
+  const { addProduct, cartItems, increase } = useContext(CartContext);
+  const itemInCart = isInCart(product, cartItems);
   return (
     <div className="featured-product">
       <div
@@ -22,15 +22,15 @@ const FeaturedProduct = (props) => {
       <div className="name-price">
         <h3>{title}</h3>
         <p>$ {price}</p>
-        {/* {!itemInCart && ( */}
-        <button
-          className="button is-black nomad-btn"
-          // onClick={() => addProduct(product)}
-        >
-          ADD TO CART
-        </button>
-        {/* )} */}
-        {/* {itemInCart && (
+        {!itemInCart && (
+          <button
+            className="button is-black nomad-btn"
+            onClick={() => addProduct(product)}
+          >
+            ADD TO CART
+          </button>
+        )}
+        {itemInCart && (
           <button
             className="button is-white nomad-btn"
             id="btn-white-outline"
@@ -38,7 +38,7 @@ const FeaturedProduct = (props) => {
           >
             ADD MORE
           </button>
-        )} */}
+        )}
       </div>
     </div>
   );
