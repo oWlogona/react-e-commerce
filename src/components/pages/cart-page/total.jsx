@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, withRouter } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Total = ({ itemCount, total, history, clearCart }) => {
   const navigate = useNavigate();

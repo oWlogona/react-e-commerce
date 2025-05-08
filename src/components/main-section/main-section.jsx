@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+
 import "./main-section.styles.scss";
 
 const MainSection = ({ history }) => {
